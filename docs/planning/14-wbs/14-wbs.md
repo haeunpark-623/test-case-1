@@ -585,7 +585,7 @@ sprints:
     milestone: "Sprint 1"
     due: "2026-06-09"
     issues:
-      - title: "infra-scaffold: 12-scaffolding §6·§7 + LOCAL.md §3·§4 SoT 박제"
+      - title: "chore(infra): infra-scaffold — 12-scaffolding §6·§7 + LOCAL.md §3·§4 SoT 박제"
         slug: "infra-scaffold"
         labels: ["status:todo", "type:chore", "area:infra", "priority:p0"]
         body: |
@@ -620,7 +620,7 @@ sprints:
           ---
           WBS 정본: {{WBS_URL}}
 
-      - title: "infra-prisma-init: Prisma schema + migrations(분리형) + seed 100건"
+      - title: "chore(infra): infra-prisma-init — Prisma schema + migrations(분리형) + seed 100건"
         slug: "infra-prisma-init"
         labels: ["status:todo", "type:chore", "area:infra", "priority:p0"]
         body: |
@@ -655,7 +655,7 @@ sprints:
           ---
           WBS 정본: {{WBS_URL}}
 
-      - title: "infra-ci-workflow: .github/workflows/ci.yml + act + LOCAL.md §5"
+      - title: "chore(infra): infra-ci-workflow — .github/workflows/ci.yml + act + LOCAL.md §5"
         slug: "infra-ci-workflow"
         labels: ["status:todo", "type:chore", "area:infra", "priority:p0"]
         body: |
@@ -690,7 +690,7 @@ sprints:
           ---
           WBS 정본: {{WBS_URL}}
 
-      - title: "be-auth-signup: POST /api/users + bcrypt + JWT"
+      - title: "feat(backend): be-auth-signup — POST /api/users + bcrypt + JWT"
         slug: "be-auth-signup"
         labels: ["status:todo", "type:feature", "area:backend", "priority:p0"]
         body: |
@@ -726,7 +726,7 @@ sprints:
           ---
           WBS 정본: {{WBS_URL}}
 
-      - title: "be-auth-login: POST /api/users/login + JWT verify"
+      - title: "feat(backend): be-auth-login — POST /api/users/login + JWT verify"
         slug: "be-auth-login"
         labels: ["status:todo", "type:feature", "area:backend", "priority:p0"]
         body: |
@@ -762,7 +762,7 @@ sprints:
           ---
           WBS 정본: {{WBS_URL}}
 
-      - title: "be-user-me: GET/PUT /api/user"
+      - title: "feat(backend): be-user-me — GET/PUT /api/user"
         slug: "be-user-me"
         labels: ["status:todo", "type:feature", "area:backend", "priority:p0"]
         body: |
@@ -798,7 +798,7 @@ sprints:
           ---
           WBS 정본: {{WBS_URL}}
 
-      - title: "fe-shell-router: App shell + Header/Footer + HashRouter + AuthGuard"
+      - title: "feat(frontend): fe-shell-router — App shell + Header/Footer + HashRouter + AuthGuard"
         slug: "fe-shell-router"
         labels: ["status:todo", "type:feature", "area:frontend", "priority:p0"]
         body: |
@@ -835,7 +835,7 @@ sprints:
           ---
           WBS 정본: {{WBS_URL}}
 
-      - title: "fe-auth-screens: Login/Register/Settings + R-F-17 logout"
+      - title: "feat(frontend): fe-auth-screens — Login/Register/Settings + R-F-17 logout"
         slug: "fe-auth-screens"
         labels: ["status:todo", "type:feature", "area:frontend", "priority:p0"]
         body: |
@@ -876,7 +876,7 @@ sprints:
     milestone: "Sprint 2"
     due: "2026-06-19"
     issues:
-      - title: "be-article-crud: POST/GET/PUT/DELETE /api/articles[/:slug] + slug 발급"
+      - title: "feat(backend): be-article-crud — POST/GET/PUT/DELETE /api/articles[/:slug] + slug 발급"
         slug: "be-article-crud"
         labels: ["status:todo", "type:feature", "area:backend", "priority:p0"]
         body: |
@@ -912,7 +912,7 @@ sprints:
           ---
           WBS 정본: {{WBS_URL}}
 
-      - title: "be-article-list: GET /api/articles + 필터·페이지네이션 + k6"
+      - title: "feat(backend): be-article-list — GET /api/articles + 필터·페이지네이션 + k6"
         slug: "be-article-list"
         labels: ["status:todo", "type:feature", "area:backend", "priority:p0"]
         body: |
@@ -949,7 +949,7 @@ sprints:
           ---
           WBS 정본: {{WBS_URL}}
 
-      - title: "be-feed-list: GET /api/articles/feed"
+      - title: "feat(backend): be-feed-list — GET /api/articles/feed"
         slug: "be-feed-list"
         labels: ["status:todo", "type:feature", "area:backend", "priority:p1"]
         body: |
@@ -984,7 +984,7 @@ sprints:
           ---
           WBS 정본: {{WBS_URL}}
 
-      - title: "be-favorite: POST/DELETE /api/articles/:slug/favorite"
+      - title: "feat(backend): be-favorite — POST/DELETE /api/articles/:slug/favorite"
         slug: "be-favorite"
         labels: ["status:todo", "type:feature", "area:backend", "priority:p1"]
         body: |
@@ -1020,7 +1020,7 @@ sprints:
           ---
           WBS 정본: {{WBS_URL}}
 
-      - title: "be-profile-follow: GET /api/profiles/:username + POST/DELETE follow"
+      - title: "feat(backend): be-profile-follow — GET /api/profiles/:username + POST/DELETE follow"
         slug: "be-profile-follow"
         labels: ["status:todo", "type:feature", "area:backend", "priority:p1"]
         body: |
@@ -1056,7 +1056,7 @@ sprints:
           ---
           WBS 정본: {{WBS_URL}}
 
-      - title: "be-tag-popular: GET /api/tags"
+      - title: "feat(backend): be-tag-popular — GET /api/tags"
         slug: "be-tag-popular"
         labels: ["status:todo", "type:feature", "area:backend", "priority:p2"]
         body: |
@@ -1090,7 +1090,7 @@ sprints:
           ---
           WBS 정본: {{WBS_URL}}
 
-      - title: "fe-api-client: fetch wrapper + Authorization + 401 handler"
+      - title: "feat(frontend): fe-api-client — fetch wrapper + Authorization + 401 handler"
         slug: "fe-api-client"
         labels: ["status:todo", "type:feature", "area:frontend", "priority:p0"]
         body: |
@@ -1126,7 +1126,7 @@ sprints:
           ---
           WBS 정본: {{WBS_URL}}
 
-      - title: "fe-md-sanitize: marked + DOMPurify wrapper"
+      - title: "feat(frontend): fe-md-sanitize — marked + DOMPurify wrapper"
         slug: "fe-md-sanitize"
         labels: ["status:todo", "type:feature", "area:frontend", "priority:p0"]
         body: |
@@ -1167,7 +1167,7 @@ sprints:
     milestone: "Sprint 3"
     due: "2026-06-30"
     issues:
-      - title: "fe-article-home: Home + Global/Your Feed + tag 사이드바 + 페이지네이션"
+      - title: "feat(frontend): fe-article-home — Home + Global/Your Feed + tag 사이드바 + 페이지네이션"
         slug: "fe-article-home"
         labels: ["status:todo", "type:feature", "area:frontend", "priority:p0"]
         body: |
@@ -1204,7 +1204,7 @@ sprints:
           ---
           WBS 정본: {{WBS_URL}}
 
-      - title: "fe-article-detail: 글 상세 + favorite + delete"
+      - title: "feat(frontend): fe-article-detail — 글 상세 + favorite + delete"
         slug: "fe-article-detail"
         labels: ["status:todo", "type:feature", "area:frontend", "priority:p0"]
         body: |
@@ -1241,7 +1241,7 @@ sprints:
           ---
           WBS 정본: {{WBS_URL}}
 
-      - title: "fe-editor: /#/editor + /#/editor/:slug"
+      - title: "feat(frontend): fe-editor — /#/editor + /#/editor/:slug"
         slug: "fe-editor"
         labels: ["status:todo", "type:feature", "area:frontend", "priority:p0"]
         body: |
@@ -1278,7 +1278,7 @@ sprints:
           ---
           WBS 정본: {{WBS_URL}}
 
-      - title: "fe-profile-view: 프로필 + Follow 토글 + My/Favorited 탭"
+      - title: "feat(frontend): fe-profile-view — 프로필 + Follow 토글 + My/Favorited 탭"
         slug: "fe-profile-view"
         labels: ["status:todo", "type:feature", "area:frontend", "priority:p1"]
         body: |
@@ -1314,7 +1314,7 @@ sprints:
           ---
           WBS 정본: {{WBS_URL}}
 
-      - title: "be-comments-crud: GET/POST/DELETE /api/articles/:slug/comments[/:id]"
+      - title: "feat(backend): be-comments-crud — GET/POST/DELETE /api/articles/:slug/comments[/:id]"
         slug: "be-comments-crud"
         labels: ["status:todo", "type:feature", "area:backend", "priority:p1"]
         body: |
@@ -1350,7 +1350,7 @@ sprints:
           ---
           WBS 정본: {{WBS_URL}}
 
-      - title: "fe-comments: 댓글 폼/리스트/삭제 UI"
+      - title: "feat(frontend): fe-comments — 댓글 폼/리스트/삭제 UI"
         slug: "fe-comments"
         labels: ["status:todo", "type:feature", "area:frontend", "priority:p1"]
         body: |
@@ -1387,7 +1387,7 @@ sprints:
           ---
           WBS 정본: {{WBS_URL}}
 
-      - title: "release-readiness: Newman 19 + axe-core + 3 profile boot + retro"
+      - title: "chore(infra): release-readiness — Newman 19 + axe-core + 3 profile boot + retro"
         slug: "release-readiness"
         labels: ["status:todo", "type:chore", "area:infra", "priority:p0"]
         body: |
