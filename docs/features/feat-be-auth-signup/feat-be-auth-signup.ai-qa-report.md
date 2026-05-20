@@ -96,9 +96,9 @@ ui_changed: "false"
 |---|---|---|---|
 | (N/A — BE API only) | (N/A) | N/A | stylesheet N/A — BE-only |
 
-- **gstack_qa_used**: N/A 사전 합의 — BE API
-- **console_errors**: N/A
-- **stylesheet 적용 근거**: stylesheet N/A — BE-only
+- **gstack_qa_used**: N/A 사전 합의 — gstack /qa·browse 바이너리·playwright 모두 미사용 (BE API only)
+- **console_errors**: N/A 사전 합의
+- **stylesheet 적용 근거**: stylesheet N/A — BE-only (css bundle 미해당)
 
 ## 7. 로컬 부팅 가능성
 
