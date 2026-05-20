@@ -1,0 +1,38 @@
+{
+  "name": "@conduit/backend",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Conduit backend — Fastify 4 + Prisma 5 + PostgreSQL 16",
+  "type": "module",
+  "main": "./dist/server.js",
+  "scripts": {
+    "dev": "dotenv -e .env.dev -- tsx watch src/server.ts",
+    "build": "tsc -p tsconfig.json",
+    "start:stg": "dotenv -e .env.stg -- node dist/server.js",
+    "start:prod": "dotenv -e .env.prod -- node dist/server.js",
+    "lint": "eslint src --ext .ts",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test:unit": "vitest run --coverage",
+    "test:int": "echo 'integration tests added by infra-prisma-init #3'",
+    "prisma:push:dev": "dotenv -e .env.dev -- prisma db push --skip-generate",
+    "prisma:migrate:init": "dotenv -e .env.dev -- prisma migrate dev --name init",
+    "prisma:migrate:stg": "dotenv -e .env.stg -- prisma migrate deploy",
+    "prisma:migrate:prod": "dotenv -e .env.prod -- prisma migrate deploy",
+    "seed:dev": "echo 'seed added by infra-prisma-init #3'"
+  },
+  "dependencies": {
+    "@conduit/types": "workspace:*",
+    "@fastify/cors": "^9.0.1",
+    "@prisma/client": "^5.18.0",
+    "fastify": "^4.28.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.10",
+    "@vitest/coverage-v8": "^2.0.5",
+    "dotenv-cli": "^7.4.2",
+    "prisma": "^5.18.0",
+    "tsx": "^4.16.2",
+    "typescript": "^5.5.3",
+    "vitest": "^2.0.5"
+  }
+}
