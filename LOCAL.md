@@ -499,7 +499,35 @@ cat backend/settings.gradle* | grep -E 'rootProject.name|^include'
 
 해결: parent 설정 파일(pom.xml `<modules>` / build.sbt `lazy val ... = project.in(...)` / Cargo.toml `[workspace] members`)에 해당 module이 포함됐는지 점검. 없으면 multi-project syntax 폐기 + module cwd 직호출로 전환.
 
-### 5.7 (newProject별 추가 — 발견 시점에 본 절에 누적)
+### 5.7 Prisma generate SSL 인증서 차단 (회사망)
+
+증상:
+```
+$ pnpm --filter @conduit/backend exec prisma generate
+Error: request to https://binaries.prisma.sh/.../query_engine.dll.node.gz.sha256 failed, reason: unable to get local issuer certificate
+```
+
+원인: 회사망 SSL inspection이 Prisma binary 다운로드 SSL 핸드셰이크를 차단.
+
+해결 (4가지 중 1택, 우선순위):
+
+1. **회사 CA 인증서 신뢰** (가장 정공):
+   ```bash
+   export NODE_EXTRA_CA_CERTS=/path/to/company-ca.crt
+   pnpm --filter @conduit/backend exec prisma generate
+   ```
+2. **사내 Prisma engines mirror** (사내 mirror 가용 시):
+   ```bash
+   export PRISMA_ENGINES_MIRROR=https://internal-mirror.example.com/prisma
+   pnpm --filter @conduit/backend exec prisma generate
+   ```
+3. **SSL 검증 임시 우회** (개발 환경만, 운영 금지):
+   ```bash
+   NODE_TLS_REJECT_UNAUTHORIZED=0 pnpm --filter @conduit/backend exec prisma generate
+   ```
+4. **GitHub Actions runner 의존** (인증서 제약 없음): 로컬 generate skip + PR open 시 ci.yml workflow가 자동 generate. 본인 환경에서 단위 테스트는 `vi.mock('@prisma/client')` 패턴으로 engine 미의존 (이슈 #3 prisma-client.test.ts 참조).
+
+### 5.8 (newProject별 추가 — 발견 시점에 본 절에 누적)
 
 ---
 
