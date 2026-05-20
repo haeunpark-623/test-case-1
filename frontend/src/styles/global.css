@@ -1,0 +1,23 @@
+/* Conduit — global token + Bootstrap 4 override entrypoint
+ * 10-lld-screen-design §3 토큰은 fe-shell-router #7에서 본격 채움.
+ * 본 commit (#2)은 토큰 :root 변수 골격만.
+ */
+
+:root {
+  /* Color (10 §3) — placeholder, fe-shell-router에서 8 색상 정식 */
+  --color-primary: #5cb85c;
+  --color-text: #373a3c;
+  --color-bg: #ffffff;
+
+  /* Typography (10 §3) */
+  --font-base: 'Source Sans Pro', sans-serif;
+
+  /* Spacing (10 §3) */
+  --space-md: 1rem;
+}
+
+body {
+  font-family: var(--font-base);
+  color: var(--color-text);
+  background-color: var(--color-bg);
+}
