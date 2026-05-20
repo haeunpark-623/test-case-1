@@ -18,7 +18,10 @@
     "prisma:migrate:init": "dotenv -e .env.dev -- prisma migrate dev --name init",
     "prisma:migrate:stg": "dotenv -e .env.stg -- prisma migrate deploy",
     "prisma:migrate:prod": "dotenv -e .env.prod -- prisma migrate deploy",
-    "seed:dev": "echo 'seed added by infra-prisma-init #3'"
+    "seed:dev": "dotenv -e .env.dev -- tsx prisma/seed.ts"
+  },
+  "prisma": {
+    "seed": "tsx prisma/seed.ts"
   },
   "dependencies": {
     "@conduit/types": "workspace:*",
@@ -27,6 +30,7 @@
     "fastify": "^4.28.1"
   },
   "devDependencies": {
+    "@faker-js/faker": "^8.4.1",
     "@types/node": "^20.14.10",
     "@vitest/coverage-v8": "^2.0.5",
     "dotenv-cli": "^7.4.2",
