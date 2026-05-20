@@ -1,0 +1,17 @@
+# Conduit Caddy reverse proxy — stg/prod canonical
+# dev profile은 옵션 A 사용 시 본 Caddyfile 미사용 (LOCAL.md §3.1)
+
+:80 {
+	root * /srv
+	encode gzip
+
+	@api path /api/*
+	handle @api {
+		reverse_proxy api:4000
+	}
+
+	handle {
+		try_files {path} /index.html
+		file_server
+	}
+}

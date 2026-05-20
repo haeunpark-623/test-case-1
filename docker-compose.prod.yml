@@ -1,0 +1,52 @@
+# Conduit prod profile — 통합 부팅 (옵션 B, AI 게이트 6축 canonical)
+# 사용: docker compose -f docker-compose.prod.yml --env-file backend/.env.prod up --build
+# 시크릿(JWT_SECRET·DATABASE_URL password)은 secret manager injection 권장 — .env.prod 평문 commit 금지
+
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    volumes:
+      - conduit_prod_db:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    restart: unless-stopped
+
+  api:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    environment:
+      DATABASE_URL: ${DATABASE_URL}
+      JWT_SECRET: ${JWT_SECRET}
+      JWT_EXP_SECONDS: ${JWT_EXP_SECONDS}
+      PORT: ${PORT}
+      NODE_ENV: production
+      LOG_LEVEL: ${LOG_LEVEL}
+      CORS_ALLOWED_ORIGINS: ${CORS_ALLOWED_ORIGINS}
+    ports:
+      - "4000:4000"
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: unless-stopped
+
+  web:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+    ports:
+      - "80:80"
+      - "443:443"
+    depends_on:
+      - api
+    restart: unless-stopped
+
+volumes:
+  conduit_prod_db:
