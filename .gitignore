@@ -46,6 +46,38 @@ service-account*.json
 .claude/skills/gstack/bun.lock
 .gstack/
 
+# ========================================
+# Node / TypeScript / pnpm (본 프로젝트 stack — feat-infra-scaffold #2)
+# ========================================
+node_modules/
+**/node_modules/
+dist/
+**/dist/
+build/
+**/build/
+*.tsbuildinfo
+.tsbuildinfo
+coverage/
+**/coverage/
+.vite/
+**/.vite/
+.cache/
+**/.cache/
+*.local
+pnpm-debug.log*
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# ========================================
+# OS / Editor
+# ========================================
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+!.vscode/extensions.json
+
 # gstack 심볼릭 링크 (setup이 자동 생성, 커밋 불필요)
 .claude/skills/autoplan
 .claude/skills/benchmark

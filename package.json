@@ -1,0 +1,32 @@
+{
+  "name": "conduit",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Conduit — RealWorld Medium.com clone (full-stack TypeScript monorepo)",
+  "license": "MIT",
+  "packageManager": "pnpm@9.15.4",
+  "engines": {
+    "node": ">=20.0.0",
+    "pnpm": ">=9.0.0"
+  },
+  "scripts": {
+    "setup": "pnpm install --frozen-lockfile",
+    "build": "pnpm -r --filter \"./packages/*\" --filter \"./backend\" --filter \"./frontend\" build",
+    "lint": "pnpm -r lint",
+    "typecheck": "pnpm -r typecheck",
+    "test:unit": "pnpm -r test:unit",
+    "test:int": "pnpm -r test:int",
+    "format": "prettier --write \"**/*.{ts,tsx,js,json,md,yml,yaml}\" --ignore-path .gitignore",
+    "format:check": "prettier --check \"**/*.{ts,tsx,js,json,md,yml,yaml}\" --ignore-path .gitignore"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.10",
+    "@typescript-eslint/eslint-plugin": "^7.16.1",
+    "@typescript-eslint/parser": "^7.16.1",
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-import": "^2.29.1",
+    "prettier": "^3.3.3",
+    "typescript": "^5.5.3"
+  }
+}
