@@ -1,0 +1,11 @@
+node_modules
+dist
+build
+coverage
+.vite
+pnpm-lock.yaml
+*.tsbuildinfo
+docs/planning/
+docs/features/
+agent-toolkit/
+.claude/
