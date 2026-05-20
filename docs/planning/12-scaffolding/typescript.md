@@ -212,9 +212,15 @@ pnpm test:a11y                                     # axe-core (gstack 내)
 ### 5.5 GitHub Actions 로컬 (ADR-0047)
 
 ```bash
-act pull_request -W .github/workflows/ci.yml --secret-file .env.act
-# 또는 manual reproduction — 5.4 명령 순차 (fallback)
+# .actrc 자동 적용: catthehacker/ubuntu:act-latest runner + .env.act 시크릿
+cp .env.act.example .env.act          # 사전 준비
+act -n -W .github/workflows/ci.yml    # dry-run
+act pull_request -W .github/workflows/ci.yml   # 실 실행
+# 회사망 SSL 차단 시 LOCAL.md §5.7 참조
+# act 미사용 fallback — manual reproduction (5.4 명령 + Prisma + docker-compose 순차)
 ```
+
+LOCAL.md §5.5 정본과 매 PR 동기 (ADR-0040).
 
 ## 6. 환경 변수 / 설정 분리
 
