@@ -16,8 +16,18 @@
 # 보안: 절대 커밋 금지 (CLAUDE.md 보안 절대 규칙 정합)
 # ========================================
 .env
-.env.*
+.env.local
+.env.dev
+.env.stg
+.env.prod
+**/.env
+**/.env.local
+**/.env.dev
+**/.env.stg
+**/.env.prod
 !.env.example
+!**/.env.example
+!**/.env.*.example
 *.key
 *.pem
 *.p12
