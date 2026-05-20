@@ -42,5 +42,5 @@ export function verifyToken(token: string): DecodedPayload {
   if (typeof decoded === 'string') {
     throw new Error('AUTH_JWT_INVALID_PAYLOAD: token payload is a string, expected object');
   }
-  return decoded as DecodedPayload;
+  return decoded as unknown as DecodedPayload;
 }

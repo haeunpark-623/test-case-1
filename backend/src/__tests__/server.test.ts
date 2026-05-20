@@ -1,12 +1,24 @@
-import { afterAll, afterEach, beforeAll, beforeEach, describe, expect, it } from 'vitest';
+import type { FastifyInstance } from 'fastify';
+import { afterAll, afterEach, beforeAll, beforeEach, describe, expect, it, vi } from 'vitest';
 
-import { buildApp } from '../app';
+vi.mock('@prisma/client', () => {
+  class MockPrismaClient {
+    async $connect(): Promise<void> {
+      /* noop */
+    }
+    async $disconnect(): Promise<void> {
+      /* noop */
+    }
+  }
+  return { PrismaClient: MockPrismaClient };
+});
 
 describe('GET /health', () => {
-  const app = buildApp({ logLevel: 'silent' });
+  let app: FastifyInstance;
 
   beforeAll(async () => {
-    await app.ready();
+    const { buildApp } = await import('../app');
+    app = await buildApp({ logLevel: 'silent' });
   });
 
   afterAll(async () => {
@@ -46,32 +58,32 @@ describe('buildApp', () => {
   });
 
   it('uses opts.logLevel when provided', async () => {
-    const app = buildApp({ logLevel: 'silent' });
-    await app.ready();
+    const { buildApp } = await import('../app');
+    const app = await buildApp({ logLevel: 'silent' });
     expect(app.log.level).toBe('silent');
     await app.close();
   });
 
   it('falls back to process.env.LOG_LEVEL when opts.logLevel missing', async () => {
     process.env.LOG_LEVEL = 'warn';
-    const app = buildApp();
-    await app.ready();
+    const { buildApp } = await import('../app');
+    const app = await buildApp();
     expect(app.log.level).toBe('warn');
     await app.close();
   });
 
   it('falls back to "info" when both opts and env are missing', async () => {
     delete process.env.LOG_LEVEL;
-    const app = buildApp();
-    await app.ready();
+    const { buildApp } = await import('../app');
+    const app = await buildApp();
     expect(app.log.level).toBe('info');
     await app.close();
   });
 
   it('reports "unknown" profile when NODE_ENV missing', async () => {
     delete process.env.NODE_ENV;
-    const app = buildApp({ logLevel: 'silent' });
-    await app.ready();
+    const { buildApp } = await import('../app');
+    const app = await buildApp({ logLevel: 'silent' });
     const res = await app.inject({ method: 'GET', url: '/health' });
     expect(res.json().profile).toBe('unknown');
     await app.close();
