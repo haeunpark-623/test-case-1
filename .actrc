@@ -1,0 +1,8 @@
+# act runner 기본 옵션 — LOCAL.md §5.5 act pull_request -W .github/workflows/ci.yml 호출 시 자동 적용
+
+# Ubuntu runner (GitHub Actions ubuntu-latest와 가까운 image)
+-P ubuntu-latest=catthehacker/ubuntu:act-latest
+
+# secrets / env 분리 — gitignored
+--secret-file .env.act
+--env-file .env.act

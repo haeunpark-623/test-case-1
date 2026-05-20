@@ -1,0 +1,94 @@
+name: ci
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+env:
+  PNPM_VERSION: "9.15.4"
+  NODE_VERSION: "20"
+
+jobs:
+  lint-and-test:
+    name: lint + typecheck + unit + smoke
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    services:
+      db:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_USER: conduit
+          POSTGRES_PASSWORD: conduit
+          POSTGRES_DB: conduit_dev
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U conduit -d conduit_dev"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: ${{ env.PNPM_VERSION }}
+          run_install: false
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Lint
+        run: pnpm -r lint
+
+      - name: Typecheck
+        run: pnpm -r typecheck
+
+      - name: Unit tests (with coverage)
+        run: pnpm -r test:unit
+
+      - name: Prepare backend env for smoke
+        run: cp backend/.env.dev.example backend/.env.dev
+
+      - name: Prisma generate + migrate
+        env:
+          DATABASE_URL: postgresql://conduit:conduit@localhost:5432/conduit_dev
+        run: |
+          pnpm --filter @conduit/backend exec prisma generate
+          pnpm --filter @conduit/backend exec prisma migrate deploy
+
+      - name: Smoke — backend boot + /health
+        env:
+          DATABASE_URL: postgresql://conduit:conduit@localhost:5432/conduit_dev
+          JWT_SECRET: ci-secret-min-32-chars-cccccccccccccccc
+          JWT_EXP_SECONDS: "604800"
+          PORT: "4000"
+          NODE_ENV: development
+          LOG_LEVEL: info
+          CORS_ALLOWED_ORIGINS: http://localhost:5173
+        run: |
+          pnpm --filter @conduit/backend build
+          node backend/dist/server.js &
+          SERVER_PID=$!
+          for i in 1 2 3 4 5 6 7 8 9 10; do
+            if curl -fsS http://localhost:4000/health; then
+              echo "[smoke] /health OK"
+              break
+            fi
+            sleep 2
+          done
+          curl -fsS http://localhost:4000/health | tee /tmp/health.json
+          grep -q '"status":"ok"' /tmp/health.json
+          kill $SERVER_PID || true
