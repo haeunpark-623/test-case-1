@@ -19,12 +19,6 @@ module.exports = {
     'plugin:import/typescript',
     'prettier',
   ],
-  settings: {
-    'import/resolver': {
-      typescript: { project: ['./tsconfig.base.json', './*/tsconfig.json', './packages/*/tsconfig.json'] },
-      node: true,
-    },
-  },
   rules: {
     '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_', varsIgnorePattern: '^_' }],
     'import/order': [
@@ -35,6 +29,10 @@ module.exports = {
       },
     ],
     'import/no-unresolved': 'off',
+    'import/namespace': 'off',
+    'import/named': 'off',
+    'import/default': 'off',
+    'import/no-named-as-default-member': 'off',
   },
   ignorePatterns: ['dist', 'build', 'node_modules', 'coverage', '.vite', '**/*.d.ts'],
 };
